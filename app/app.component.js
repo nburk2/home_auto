@@ -9,14 +9,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_deprecated_1 = require('@angular/router-deprecated');
+var home_component_1 = require('./home.component');
+var videos_component_1 = require('./videos.component');
 var AppComponent = (function () {
     function AppComponent() {
     }
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: '<h1>My First Angular 2 App</h1>'
-        }), 
+            template: "\n  <div class=\"container\">\n    <nav class=\"navbar navbar-default\">\n      <div class=\"container\">\n        <ul class=\"nav navbar-nav\">\n          <li><a [routerLink]=\"['Home']\">Home</a></li>\n          <li><a [routerLink]=\"['Videos']\">Videos</a></li>\n        </ul>\n      </div>\n    </nav>\n    <div id=\"page-wrapper\">\n    <div class=\"row\">\n      <h1>My First Angular 2 App</h1>\n      <router-outlet></router-outlet>\n    </div>\n    </div>\n    </div>\n  ",
+            directives: [router_deprecated_1.ROUTER_DIRECTIVES],
+            providers: [
+                router_deprecated_1.ROUTER_PROVIDERS
+            ]
+        }),
+        router_deprecated_1.RouteConfig([
+            {
+                path: '/home',
+                name: 'Home',
+                component: home_component_1.HomeComponent,
+                useAsDefault: true
+            },
+            {
+                path: '/videos',
+                name: 'Videos',
+                component: videos_component_1.VideosComponent
+            }
+        ]), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
     return AppComponent;
