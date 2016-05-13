@@ -1,5 +1,9 @@
+import { bootstrap }    from '@angular/platform-browser-dynamic';
 import { Component } from '@angular/core';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
+import {
+  Location
+} from "@angular/common";
 
 import { HomeComponent } from './home.component';
 import { VideosComponent } from './videos.component';
@@ -25,9 +29,6 @@ import { VideosComponent } from './videos.component';
     </div>
   `,
   directives: [ROUTER_DIRECTIVES],
-  providers: [
-    ROUTER_PROVIDERS
-  ]
 })
 
 @RouteConfig([
@@ -44,4 +45,10 @@ import { VideosComponent } from './videos.component';
   }
 ])
 
-export class AppComponent { }
+export class AppComponent {
+
+  constructor(location: Location) {
+    location.go(location.path());
+    console.log(location.path())
+  }
+}
