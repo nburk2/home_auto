@@ -2,6 +2,8 @@
   "compilerOptions": {
     "target": "es5",
     "module": "system",
+    /*"outFile": "dist/bundle.js",*/
+    /*"outDir": "dist",*/
     "moduleResolution": "node",
     "sourceMap": true,
     "emitDecoratorMetadata": true,

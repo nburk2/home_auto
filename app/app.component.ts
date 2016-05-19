@@ -11,22 +11,32 @@ import { VideosComponent } from './videos.component';
 @Component({
   selector: 'my-app',
   template: `
-  <div class="container">
-    <nav class="navbar navbar-default">
-      <div class="container">
-        <ul class="nav navbar-nav">
-          <li><a [routerLink]="['Home']">Home</a></li>
-          <li><a [routerLink]="['Videos']">Videos</a></li>
-        </ul>
-      </div>
+    <nav class="navbar navbar-default navbar-fixed-top affix">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand page-scroll" href="#page-top">Home Auto</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav navbar-right">
+                      <li class="">
+                          <a [routerLink]="['Home']">Home</a>
+                      </li>
+                      <li class="">
+                          <a [routerLink]="['Videos']">Videos</a>
+                      </li>
+                      <li class="">
+                          <a class="page-scroll" href="#portfolio">Portfolio</a>
+                      </li>
+                      <li>
+                          <a class="page-scroll" href="#contact">Contact</a>
+                      </li>
+                  </ul>
+            </div>
+        </div>
     </nav>
-    <div id="page-wrapper">
-    <div class="row">
-      <h1>My First Angular 2 App</h1>
-      <router-outlet></router-outlet>
-    </div>
-    </div>
-    </div>
+
+    <router-outlet></router-outlet>
+
   `,
   directives: [ROUTER_DIRECTIVES],
 })
