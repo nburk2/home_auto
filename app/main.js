@@ -20,6 +20,7 @@ System.register(['@angular/platform-browser-dynamic', '@angular/core', '@angular
                 app_component_1 = app_component_1_1;
             }],
         execute: function() {
+            core_1.enableProdMode();
             platform_browser_dynamic_1.bootstrap(app_component_1.AppComponent, [
                 router_deprecated_1.ROUTER_PROVIDERS,
                 core_1.provide(common_1.LocationStrategy, { useClass: common_1.HashLocationStrategy })
