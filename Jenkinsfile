@@ -3,9 +3,11 @@ node {
   checkout scm
 
   stage "build and test"
+    echo "pwd"
     sh "exit"
     sh "cd home_automation"
     sh "rm temp.txt"
+    echo "pwd"
 
 
   stage "move to dev directory"
