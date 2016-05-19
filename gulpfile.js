@@ -65,14 +65,14 @@ gulp.task('scripts', function(){
   // .pipe(connect.reload());
 });
 
-gulp.task('modules', function(){
-  return gulp.src(MODULES_SRC)
-  .pipe(plumber())
-  // .pipe(concat(JAVASCRIPT_DEST_FILE_NAME))
-  // .pipe(uglify())
-  .pipe(gulp.dest(MODULES_DEST));
-  // .pipe(connect.reload());
-});
+// gulp.task('modules', function(){
+//   return gulp.src(MODULES_SRC)
+//   .pipe(plumber())
+//   // .pipe(concat(JAVASCRIPT_DEST_FILE_NAME))
+//   // .pipe(uglify())
+//   .pipe(gulp.dest(MODULES_DEST));
+//   // .pipe(connect.reload());
+// });
 
 gulp.task('index', function(){
   return gulp.src(INDEX_SRC)
@@ -129,4 +129,17 @@ gulp.task('font', function () {
 //   gulp.watch(CSS_SRC, ['styles']);
 // });
 
-gulp.task('default', ['templates', 'scripts', 'modules', 'index','sysjs', 'css', 'font']);
+gulp.task("libs", function () {
+    return gulp.src([
+            'es6-shim/es6-shim.min.js',
+            'systemjs/dist/system-polyfills.js',
+            'systemjs/dist/system.src.js',
+            'reflect-metadata/Reflect.js',
+            'rxjs/**',
+            'zone.js/dist/**',
+            '@angular/**'
+        ], {cwd: "node_modules/**"}) /* Glob required here. */
+        .pipe(gulp.dest("dist/node_modules"));
+});
+
+gulp.task('default', ['templates', 'scripts', 'index','sysjs', 'css', 'font', 'libs']);
