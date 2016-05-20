@@ -24,7 +24,8 @@ var gulp = require('gulp'), // GULP
   // sass = require('gulp-sass'),
   template = require('gulp-template-compile'),
   concat = require('gulp-concat'),
-  Builder = require('systemjs-builder');
+  Builder = require('systemjs-builder'),
+  clean = require('gulp-clean');
   // connect = require('gulp-connect');
 
   gulp.task('bundle', function() {
@@ -70,6 +71,11 @@ var JAVASCRIPT_SRC = [
   FONT_SRC = "font-awesome/**",
   FONT_DEST = "dist/font-awesome"
 
+
+  gulp.task('clean', function () {
+  	return gulp.src('dist', {read: false})
+  		.pipe(clean());
+  });
 
 
 gulp.task('scripts', function(){
@@ -139,15 +145,16 @@ gulp.task('font', function () {
 gulp.task("libs", function () {
     return gulp.src([
             'es6-shim/es6-shim.min.js',
+            'es6-shim/es6-shim.min.js.map',
             'systemjs/dist/system-polyfills.js',
             'systemjs/dist/system.src.js',
             'reflect-metadata/Reflect.js',
-            'rxjs/**',
+            'reflect-metadata/Reflect.js.map',
             'zone.js/dist/zone.min.js',
             'bootstrap/dist/css/bootstrap.min.css',
+            'bootstrap/dist/css/bootstrap.min.css.map',
             'bootstrap/dist/js/bootstrap.min.js',
             'jquery/dist/jquery.min.js'
-            // '@angular/**'
         ], {cwd: "node_modules/**"}) /* Glob required here. */
         .pipe(gulp.dest("dist/node_modules"));
 });
