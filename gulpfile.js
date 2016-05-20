@@ -23,21 +23,37 @@ var gulp = require('gulp'), // GULP
   minifyCss = require('gulp-minify-css'), // MINIFY CSS
   // sass = require('gulp-sass'),
   template = require('gulp-template-compile'),
-  concat = require('gulp-concat');
+  concat = require('gulp-concat'),
+  Builder = require('systemjs-builder');
   // connect = require('gulp-connect');
 
+  gulp.task('bundle', function() {
+      // optional constructor options
+      // sets the baseURL and loads the configuration file
+      var builder = new Builder('', 'systemjs.config.js');
+
+      /*
+         the parameters of the below buildStatic() method are:
+             - your transcompiled application boot file (the one wich would contain the bootstrap(MyApp, [PROVIDERS]) function - in my case 'dist/app/boot.js'
+             - the output (file into which it would output the bundled code)
+             - options {}
+      */
+      return builder
+          .buildStatic('app/main.js', 'dist/app/bundle.js', { minify: true, sourceMaps: true})
+          .then(function() {
+              console.log('Build complete');
+          })
+          .catch(function(err) {
+              console.log('Build error');
+              console.log(err);
+          });
+  });
 
 var JAVASCRIPT_SRC = [
     'app/*.js',
     'app/*.map'
   ],
-  MODULES_SRC = [
-    'node_modules/**',
-    '!node_modules/{gulp*,gulp*/**}/',
-    '!node_modules/{lite-server,lite-server/**}/',
-    '!node_modules/{typescript,typescript/**}/',
-    '!node_modules/{typings,typings/**}/'
-  ],
+
   TEMPLATE_SRC = "app/views/*.html",
   CSS_SRC = "creative.css",
   // IMAGE_SRC = "src/images/**/*",
@@ -64,15 +80,6 @@ gulp.task('scripts', function(){
   .pipe(gulp.dest(JAVASCRIPT_DEST));
   // .pipe(connect.reload());
 });
-
-// gulp.task('modules', function(){
-//   return gulp.src(MODULES_SRC)
-//   .pipe(plumber())
-//   // .pipe(concat(JAVASCRIPT_DEST_FILE_NAME))
-//   // .pipe(uglify())
-//   .pipe(gulp.dest(MODULES_DEST));
-//   // .pipe(connect.reload());
-// });
 
 gulp.task('index', function(){
   return gulp.src(INDEX_SRC)
@@ -136,10 +143,13 @@ gulp.task("libs", function () {
             'systemjs/dist/system.src.js',
             'reflect-metadata/Reflect.js',
             'rxjs/**',
-            'zone.js/dist/**',
-            '@angular/**'
+            'zone.js/dist/zone.min.js',
+            'bootstrap/dist/css/bootstrap.min.css',
+            'bootstrap/dist/js/bootstrap.min.js',
+            'jquery/dist/jquery.min.js'
+            // '@angular/**'
         ], {cwd: "node_modules/**"}) /* Glob required here. */
         .pipe(gulp.dest("dist/node_modules"));
 });
 
-gulp.task('default', ['templates', 'scripts', 'index','sysjs', 'css', 'font', 'libs']);
+gulp.task('default', ['templates', 'scripts', 'index','sysjs', 'css', 'font', 'libs', 'bundle']);
