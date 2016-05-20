@@ -145,7 +145,7 @@ gulp.task('font', function () {
 gulp.task("libs", function () {
     return gulp.src([
             'es6-shim/es6-shim.min.js',
-            'es6-shim/es6-shim.min.js.map',
+            'es6-shim/es6-shim.map',
             'systemjs/dist/system-polyfills.js',
             'systemjs/dist/system.src.js',
             'reflect-metadata/Reflect.js',
