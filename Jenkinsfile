@@ -13,8 +13,8 @@ node {
  //stage "mail results"
  //mail bcc: '', body: 'sending information', cc: '', charset: 'UTF-8', from: 'nate1113@comcast.net', mimeType: 'text/html', replyTo: '', subject: 'build report', to: 'nate1113@comcast.net'
 
-stage "sending slack notification"
-slackSend channel: '#jenkins_temp', message: 'Successful build of "${env.JOB_BASE_NAME}" job for the "${env.BRANCH_NAME}" Branch', teamDomain: 'ctac.slack.com'
+ stage "sending slack notification"
+ slackSend failOnError: true, channel: '#jenkins_temp', message: 'Successful build of "${env.JOB_BASE_NAME}" job for the "${env.BRANCH_NAME}" Branch', teamDomain: 'ctac', token: 'TXBVaRaW9cyQg4tNwe3wf91C'
 
 
 }
