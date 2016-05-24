@@ -15,7 +15,7 @@ node {
 
  stage "sending slack notification"
  withCredentials([[$class: 'StringBinding', credentialsId: '3499ec53-575f-472d-b377-8938e4e53329', variable: 'SLACK_TOKEN']]) {
-    slackSend failOnError: true, channel: '#jenkins_temp', message: 'Successful build of "${env.JOB_BASE_NAME}" job for the "${env.BRANCH_NAME}" Branch', teamDomain: 'ctac', token: env.SLACK_TOKEN
+    slackSend failOnError: true, channel: '#jenkins_temp', message: 'Successful build of ' + env.JOB_BASE_NAME + ' job for the ' + ${env.BRANCH_NAME} + ' Branch', teamDomain: 'ctac', token: env.SLACK_TOKEN
 }
 
 
