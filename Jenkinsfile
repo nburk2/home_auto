@@ -14,8 +14,8 @@ node {
  //mail bcc: '', body: 'sending information', cc: '', charset: 'UTF-8', from: 'nate1113@comcast.net', mimeType: 'text/html', replyTo: '', subject: 'build report', to: 'nate1113@comcast.net'
 
  stage "sending slack notification"
- withCredentials([[$class: 'StringBinding', credentialsId: '3499ec53-575f-472d-b377-8938e4e53329', variable: 'slack_token']]) {
-    slackSend failOnError: true, channel: '#jenkins_temp', message: 'Successful build of "${env.JOB_BASE_NAME}" job for the "${env.BRANCH_NAME}" Branch', teamDomain: 'ctac', token: '$slack_token'
+ withCredentials([[$class: 'StringBinding', credentialsId: '3499ec53-575f-472d-b377-8938e4e53329', variable: 'SLACK_TOKEN']]) {
+    slackSend failOnError: true, channel: '#jenkins_temp', message: 'Successful build of "${env.JOB_BASE_NAME}" job for the "${env.BRANCH_NAME}" Branch', teamDomain: 'ctac', token: '$SLACK_TOKEN'
 }
 
 
