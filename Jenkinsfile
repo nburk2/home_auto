@@ -12,7 +12,7 @@ node {
       //}
 
 
-  //stage "restart and deploy to tomcat"
+  stage "restart and deploy to tomcat"
   sh 'ssh ubuntu@ec2-54-213-251-190.us-west-2.compute.amazonaws.com "git clone https://github.com/nburk2/home_auto.git; cd home_auto; git checkout develop; npm install; gulp;sudo service apache2 stop; sudo rm -r /var/www/html/*; sudo mv dist/** /var/www/html;sudo service apache2 start;cd ..;sudo rm -rf home_auto"'
   //sh 'ssh ubuntu@ec2-54-213-251-190.us-west-2.compute.amazonaws.com "./bin/home_staging_deploy"'
 
