@@ -13,7 +13,7 @@ node {
 
 
   stage "restart and deploy to tomcat"
-  sh 'ssh ubuntu@ec2-54-213-251-190.us-west-2.compute.amazonaws.com "./bin/home_prod_deploy"'
+  sh 'ssh ubuntu@ec2-54-213-251-190.us-west-2.compute.amazonaws.com "./bin/home_prod_deploy.sh"'
   //sh 'ssh ubuntu@ec2-54-213-251-190.us-west-2.compute.amazonaws.com "./bin/home_staging_deploy"'
 
  //stage "mail results"
